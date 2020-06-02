@@ -6,7 +6,7 @@ const app = express();
 const IL = 'https://il.srgssr.ch/integrationlayer/2.0/mediaComposition/byUrn/';
 const port = process.env.PORT || 3000;
 
-app.get('/media/:urn', async (req, res) => {
+app.get('/integrationlayer/2.0/mediaComposition/byUrn/:urn', async (req, res) => {
     const { urn } = req.params;
     if(urn) {
         try {
