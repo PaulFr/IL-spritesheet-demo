@@ -40,12 +40,17 @@ const addThumbnailsToMediaComposition = async (media, urn) => {
 }
 
 const createSpriteSheet = async (url, urn) => {
-    const tmpFolder = tmp.dirSync({ unsafeCleanup : true });
+    const tmpFolder = tmp.dirSync({ unsafeCleanup : true, mode: 0777 });
     const ffpegCommand = `ffmpeg -i ${url} -vf fps=1 -s 180x120 -f image2 ${tmpFolder.name}/thumb-%03d.jpg`;
     const montageCommand = `montage ${tmpFolder.name}/thumb-*.jpg -geometry +0+0 -quality 40 -tile 16x ${process.cwd()}/statics/${urn}.jpg`;
 
-    await exec(ffpegCommand);
-    await exec(montageCommand);
+    try {
+        await exec(ffpegCommand);
+        await exec(montageCommand);
+    } catch (error) {
+        console.log(error);
+    }
+
     tmpFolder.removeCallback();
 }
 
