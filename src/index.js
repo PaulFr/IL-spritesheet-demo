@@ -1,12 +1,15 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import cors from 'cors';
 import { addThumbnailsToMediaComposition } from './services/Thumbnails';
 
 const app = express();
 const IL = 'https://il.srgssr.ch/integrationlayer/2.0/mediaComposition/byUrn/';
 const port = process.env.PORT || 3000;
 
-app.get('/integrationlayer/2.0/mediaComposition/byUrn/:urn', async (req, res) => {
+app.use(cors());
+
+app.get('/integrationlayer/2.0/mediaComposition/byUrn/:urn\.:ext?', async (req, res) => {
     const { urn } = req.params;
     if(urn) {
         try {
