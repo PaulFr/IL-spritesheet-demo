@@ -37,6 +37,7 @@ const addThumbnailsToMediaComposition = async (media, urn) => {
         mainChapterList.globalSpriteSheet = globalSpriteSheet;
         return {...media, chapterList: [mainChapterList, ...chapters]}
     }
+    return media;
 }
 
 const createSpriteSheet = async (url, urn) => {
