@@ -51,7 +51,7 @@ const addThumbnailsToMediaComposition = async (media, urn) => {
       rows: 11,
       cols: 16,
       period: 1,
-      url: `statics/${urn}.jpg`
+      url: `https://il-spritesheet-demo.herokuapp.com/statics/${urn}.jpg`
     };
     const isSpriteSheetExisting = await isSpriteSheetAlreadyExisting(urn);
 

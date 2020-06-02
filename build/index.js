@@ -10,7 +10,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const app = (0, _express.default)();
 const IL = 'https://il.srgssr.ch/integrationlayer/2.0/mediaComposition/byUrn/';
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.get('/media/:urn', async (req, res) => {
   const {
     urn
@@ -32,4 +32,5 @@ app.get('/media/:urn', async (req, res) => {
 
   return res.send('URN not provided');
 });
+app.use('/statics', _express.default.static('statics'));
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
